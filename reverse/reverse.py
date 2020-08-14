@@ -1,20 +1,23 @@
 class Node:
-    def __init__(self, value=None, next_node=None):
+    def __init__(self, value=None, next=None):
         self.value = value
-        self.next_node = next_node
+        self.next = next
 
     def get_value(self):
         return self.value
 
     def get_next(self):
-        return self.next_node
+        return self.next
 
     def set_next(self, new_next):
-        self.next_node = new_next
+        self.next = new_next
 
 class LinkedList:
     def __init__(self):
         self.head = None
+
+    def set_head(self, new_head):
+        self.head = new_head
 
     def add_to_head(self, value):
         node = Node(value)
@@ -39,4 +42,27 @@ class LinkedList:
         return False
 
     def reverse_list(self, node, prev):
-        pass
+        if (self.head == None or self.head.next == None):
+            return self.head
+
+        # current starts as the 2nd node in the list
+        current = self.head.next
+        # prev stars
+        prev = self.head
+        self.head.next = None
+
+        while current.next != None:
+            # ref next node
+            target = current.next
+            # set current.next to prev node
+            current.set_next(prev)
+            #move foward
+            prev = current
+            current = target
+
+        # set last node as head and link it to the rest of the nodes
+        self.set_head(current)
+        self.head.set_next(prev)
+        
+        return self
+        

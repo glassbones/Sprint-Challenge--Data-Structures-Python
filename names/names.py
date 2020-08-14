@@ -24,8 +24,6 @@ duplicates = frozenset(names_1).intersection(names_2)
 #joined = names_1 + names_2
 #duplicates = [k for k, v in Counter(joined).items() if v > 1]
 
-duplicates = frozenset(names_1).intersection(names_2)
-
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
 print (f"runtime: {end_time - start_time} seconds")
